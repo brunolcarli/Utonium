@@ -70,9 +70,9 @@ def train_powerpuff_model():
 
     # serialize model to JSON
     model_json = model.to_json()
-    with open("utonium/training/powerpuff_model.json", "w") as json_file:
+    with open("powerpuff_model.json", "w") as json_file:
         json_file.write(model_json)
 
     # serialize weights to HDF5
-    model.save_weights("utonium/training/model.h5")
+    model.save_weights("model.h5")
     print("Saved model to disk")
