@@ -10,7 +10,6 @@ migrate:
 
 replit_pipeline:
 	make install
-	make train
 	make migrate
 	make run
 
