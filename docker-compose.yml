@@ -1,0 +1,19 @@
+
+version: '3'
+
+services:
+  utonium:
+    build: .
+    image: utonium:devel
+    restart: on-failure
+    container_name: utonium_container
+    command: make run
+    env_file: utonium_env
+    volumes:
+      - .:/app
+      - static_data:/app/static
+    ports:
+      - "6777:6777"
+
+volumes:
+  static_data:
