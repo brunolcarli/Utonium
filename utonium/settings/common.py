@@ -23,9 +23,6 @@ VERSION = '0.0.0'
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 # SECRET_KEY = config('DJANGO_SECRET_KEY', '')
@@ -65,6 +62,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://localhost:8080',
     'http://localhost:8222',
+    'http://localhost:6777',
 ]
 
 
@@ -141,3 +139,5 @@ STATIC_URL = '/static/'
 GRAPHENE = {
     'SCHEMA': 'utonium.schema.schema',
 }
+
+SECURE_SSL_REDIRECT = True
