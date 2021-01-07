@@ -1,4 +1,6 @@
 Django==2.2.10
+scikit-build
+cmake
 django-filter==2.0.0
 django-graphql-jwt==0.1.5
 graphene==2.1.8
@@ -14,5 +16,4 @@ opencv-python==4.4.0.46
 tensorflow==2.3.1
 graphene-file-upload==1.2.2
 h5py==2.10.0
-scikit-build
-cmake
+django-cors-headers==3.0.2
