@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django-filter = "==2.0.0"
+django-graphql-jwt = "==0.1.5"
+graphene = "==2.1.8"
+graphene-django = "==2.2.0"
+graphql-relay = "==2.0.0"
+pytz = "==2019.3"
+numpy = "==1.18.5"
+django-cors-headers = "==3.0.2"
+python-decouple = "==3.1"
+opencv-python = "==4.4.0.46"
+tensorflow = "==2.3.1"
+graphene-file-upload = "==1.2.2"
+h5py = "==2.10.0"
+scikit-build = "*"
+cmake = "*"
+Django = "==2.2.10"
+PyJWT = "==1.7.1"
+Keras = "==2.4.3"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
