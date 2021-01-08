@@ -63,6 +63,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
     'http://localhost:8222',
     'http://localhost:6777',
+    'http://localhost:8088',
 ]
 
 
