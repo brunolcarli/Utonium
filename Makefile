@@ -1,5 +1,5 @@
 run:
-	python3 manage.py runserver 0.0.0.0:6777 --settings=utonium.settings.common
+	python3 manage.py runserver 0.0.0.0:8088 --settings=utonium.settings.production
 
 install:
 	pip3 install -r utonium/requirements/common.txt
