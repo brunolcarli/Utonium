@@ -140,4 +140,4 @@ GRAPHENE = {
     'SCHEMA': 'utonium.schema.schema',
 }
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
