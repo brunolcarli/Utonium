@@ -13,7 +13,7 @@ services:
       - .:/app
       - static_data:/app/static
     ports:
-      - "6777:6777"
+      - "8088:8088"
 
 volumes:
   static_data:
