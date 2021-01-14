@@ -17,3 +17,7 @@ tensorflow==2.3.1
 graphene-file-upload==1.2.2
 h5py==2.10.0
 django-cors-headers==3.0.2
+
+dj-static>=0.0.6
+static3>=0.6.1
+django-bootstrap3==9.1.0
