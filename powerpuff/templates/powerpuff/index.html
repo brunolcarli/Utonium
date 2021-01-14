@@ -1,0 +1,128 @@
+
+{% load bootstrap3 %}
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    
+    <!-- INCLUDE BOOTSTRAP FILES -->
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/npm.js"></script>
+    
+    <script type="text/javascript">
+        
+function request_data(){
+
+var file = document.getElementById('myFile').files[0]
+console.log(file)
+
+function status(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return Promise.resolve(response)
+  } else {
+    return Promise.reject(new Error(response.statusText))
+  }
+};
+
+function json(response) {
+  return response.json()
+};
+
+var form = new FormData();
+form.append("query", "mutation{\n  guess(input:{}) {\n    success\n    answer\n  }\n}");
+form.append("map", "{ \"File\": [\"variables.file\"] }");
+form.append("File", file);
+form.append("", "");
+
+
+fetch("http://localhost:8088/graphql/", {
+  "method": "POST",
+  'headers': new Headers({
+    'Accept': '*/*',
+    'Access-Control-Allow-Origin': "http://localhost:8088/graphql/",
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    'Access-Control-Allow-Headers': 'origin,X-Requested-With,content-type,accept,multipart/form-data',
+    'Access-Control-Allow-Credentials': 'true' 
+
+  }),
+  "body": form
+})
+.then(json)
+.then(function (data) {
+  console.log(data);
+  // Se der bom
+  var response = data['data']['guess']['answer'];
+  var pic_path = null
+
+  if (response == 'blossom'){
+    pic_path = "https://i.ibb.co/Sw16YfR/blossom.png";
+  }
+  else if (response == 'buttercup'){
+    pic_path = "https://i.ibb.co/wW7gPTh/buttercup.png";
+  } 
+  else if (response == 'bubbles'){
+    pic_path = "https://i.ibb.co/kqr4Cst/bubbles.jpg";
+  }
+
+  document.getElementById("saida").innerHTML = '<div id="saida">';
+  document.getElementById("saida").innerHTML += `<h3> ${response.charAt(0).toUpperCase()+response.slice(1)} </h3>`;
+  document.getElementById("saida").innerHTML += '</div>';
+  document.getElementById("saida").innerHTML += '<img src="' + `${pic_path}` + ' width="128" height="128"></img>'
+})
+.catch(err => {
+  console.error(err);
+  // alert(err)
+  document.getElementById("saida").innerHTML = '<div id="saida">';
+  document.getElementById("saida").innerHTML += '<h3>Please select a picture</h3>';
+  document.getElementById("saida").innerHTML += '</div>';
+});
+};
+    </script>
+
+    {% bootstrap_css %}
+	{% bootstrap_javascript %}
+    
+</head>
+<body onload="load()">   
+    <div class="container">
+        <div class="jumbotron">
+            <h1 align="center">Powerpuff Guesser</h1>
+            <h3 align="center">Find out which Powerpuff Girl you are!</h3>
+            <h6 align="right">v0.1.0</h6>
+            <form>
+                <div class="form-group">
+
+                </div>
+                <br />
+                <div align="center">
+                    <div class="well" align="center">
+                        <input type="file" id="myFile" name="filename">
+                        
+                    </div>
+                    <div align="center">
+                        <a href="#" class="btn btn-success btn-lg" onclick="request_data()">
+                    <span class="glyphicon glyphicon-refresh"></span>Guess</a>
+                </div>
+            </form>
+        </div>
+        <hr />
+        <div class="well" align="center" id="saida">
+            <label><img src="https://i.ibb.co/4TFWqLS/ppg.jpg" width="128" height="100"> </label>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--  -->
