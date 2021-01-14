@@ -8,9 +8,7 @@ from graphene_file_upload.scalars import Upload
 from django.conf import settings
 
 import os
-print('----------------')
-print(os.getcwd())
-print('----------------')
+
 
 # load json and create model
 json_file = open('powerpuff_model.json', 'r')
@@ -68,6 +66,10 @@ class Guess(graphene.relay.ClientIDMutation):
             3: 'bubbles'
         }
         yh = np.argmax(loaded_model.predict(target), axis=1)[0]
+
+        # delete created file
+        garbage = open('utonium/image.jpeg')
+        os.remove(garbage.name)
 
         return Guess(success=True, answer=gate[yh])
 
